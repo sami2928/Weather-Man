@@ -7,8 +7,11 @@ filenames_Dubai.sort!
 filenames_Murree.sort!
 filenames_lahore.sort!
 # puts filenames_Dubai
-puts "enter  year name"
-year = gets.chomp
+
+# Take input from user
+# puts "enter  year name"
+# year = gets.chomp
+year = ARGV[0]
 
 # year =2011
 cities = ["lahore","Dubai","Murree"]
@@ -26,6 +29,18 @@ min_temp_city=""
 max_hum=-1000
 max_hum_date=""
 max_hum_city=""
+
+avg_max_temp=-1000
+avg_max_temp_date=""
+avg_max_temp_city=""
+
+avg_min_temp=1000
+avg_min_temp_date=""
+avg_min_temp_city=""
+
+avg_max_hum=-1000
+avg_max_hum_date=""
+avg_max_hum_city=""
 
 
 # For Single File
@@ -91,7 +106,6 @@ cities.each do |city|
                 
                 #For Maximum Temperature
                 size = csv['Max TemperatureC'].size
-                
                 for i in 0...size
                     if max_temp.to_i < csv['Max TemperatureC'][i].to_i
                         max_temp = csv['Max TemperatureC'][i]
@@ -125,8 +139,43 @@ cities.each do |city|
                     end
                 end
 
+                 #For Average Maximum Temperature
+                 size = csv['Mean TemperatureC'].size
+                
+                 for i in 0...size
+                     if avg_max_temp.to_i < csv['Mean TemperatureC'][i].to_i
+                        avg_max_temp = csv['Mean TemperatureC'][i]
+                        avg_max_temp_date= csv['GST'][i]
+                        avg_max_temp_city = "Dubai"
+                         # puts "max"
+                     end
+                 end
+
+                 #For Average Minimum Temperature
+                 size = csv['Mean TemperatureC'].size
+                
+                for i in 0...size
+                     if avg_min_temp.to_i > csv['Mean TemperatureC'][i].to_i
+                        avg_min_temp = csv['Mean TemperatureC'][i]
+                        avg_min_temp_date= csv['GST'][i]
+                        avg_min_temp_city = "Dubai"
+                         # puts "max"
+                     end
+                end
+                
+                #For Average Humadity
+                size = csv['Mean Humidity'].size
+                for i in 0...size
+                    if avg_max_hum.to_i < csv['Mean Humidity'][i].to_i
+                        avg_max_hum = csv['Mean Humidity'][i]
+                        avg_max_hum_date= csv['GST'][i]
+                        avg_max_hum_city = "Dubai"
+                        # puts "max"
+                    end
+                end
+
             elsif
-                puts "no file exist"  
+                puts "File not Exists"  
             end
 
         elsif city == "lahore"
@@ -178,8 +227,42 @@ cities.each do |city|
                     end
                 end
 
+                #For Average Maximum Temperature
+                size = csv['Mean TemperatureC'].size
+                
+                for i in 0...size
+                    if avg_max_temp.to_i < csv['Mean TemperatureC'][i].to_i
+                       avg_max_temp = csv['Mean TemperatureC'][i]
+                       avg_max_temp_date= csv['PKT'][i]
+                       avg_max_temp_city = "Lahore"
+                        # puts "max"
+                    end
+                end
+
+                #For Average Minimum Temperature
+                size = csv['Mean TemperatureC'].size
+                for i in 0...size
+                    if avg_min_temp.to_i > csv['Mean TemperatureC'][i].to_i
+                        avg_min_temp = csv['Mean TemperatureC'][i]
+                        avg_min_temp_date= csv['PKT'][i]
+                        avg_min_temp_city = "Lahore"
+                        # puts "max"
+                    end
+                end
+                
+                #For Average Humadity
+                size = csv['Mean Humidity'].size
+                for i in 0...size
+                    if avg_max_hum.to_i < csv['Mean Humidity'][i].to_i
+                        avg_max_hum = csv['Mean Humidity'][i]
+                        avg_max_hum_date= csv['PKT'][i]
+                        avg_max_hum_city = "Lahore"
+                        # puts "max"
+                    end
+                end
+
             elsif
-                puts "no file exist"  
+                puts "File not Exists"  
             end
         elsif city == "Murree"
         #  puts "Murree"
@@ -230,12 +313,49 @@ cities.each do |city|
                 # puts "max"
                 end
             end
-         elsif
-             puts "no file exist"  
-         end
+
+            #For Average Maximum Temperature
+            size = csv['Mean TemperatureC'].size
+                
+            for i in 0...size
+                if avg_max_temp.to_i < csv['Mean TemperatureC'][i].to_i
+                   avg_max_temp = csv['Mean TemperatureC'][i]
+                   avg_max_temp_date= csv['PKT'][i]
+                   avg_max_temp_city = "Murree"
+                    # puts "max"
+                end
+            end
+
+            #For Average Minimum Temperature
+            size = csv['Mean TemperatureC'].size
+            for i in 0...size
+                if avg_min_temp.to_i > csv['Mean TemperatureC'][i].to_i
+                    avg_min_temp = csv['Mean TemperatureC'][i]
+                    avg_min_temp_date= csv['PKT'][i]
+                    avg_min_temp_city = "Murree"
+                    # puts "max"
+                end
+            end
+
+            #For Average Humadity
+            size = csv['Mean Humidity'].size
+            for i in 0...size
+                if avg_max_hum.to_i < csv['Mean Humidity'][i].to_i
+                    avg_max_hum = csv['Mean Humidity'][i]
+                    avg_max_hum_date= csv['PKT'][i]
+                    avg_max_hum_city = "Murree"
+                    # puts "max"
+                end
+            end
+
+        elsif
+            puts "File not Exists"  
+        end
         end
     end
-            # count+=1
+
+
+    # count+=1
         
     # file = File.open(file_open,"r+")
     # puts file.inspect
@@ -244,4 +364,7 @@ end
 
 puts "Highest Temperature: #{max_temp}C on #{max_temp_date} in city #{max_temp_city}" 
 puts "Lowest Temperature: #{min_temp}C on #{min_temp_date} in city #{min_temp_city}"
-puts "Highest Humidity: #{max_hum}C on #{max_hum_date} in city #{max_hum_city}"
+puts "Highest Humidity: #{max_hum}% on #{max_hum_date} in city #{max_hum_city}"
+puts "Highest Average Temperature: #{avg_max_temp}C on #{avg_max_temp_date} in city #{avg_max_temp_city}" 
+puts "Lowest Average Temperature: #{avg_min_temp}C on #{avg_min_temp_date} in city #{avg_min_temp_city}"
+puts "Average Humidity: #{avg_max_hum}% on #{avg_max_hum_date} in city #{avg_max_hum_city}"
