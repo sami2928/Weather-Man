@@ -1,7 +1,7 @@
 require 'csv'
-filenames_Dubai = Dir.chdir("/home/sami/projects/Whetherman_Problem/Dubai_weather") { Dir.entries(".") }
-filenames_Murree = Dir.chdir("/home/sami/projects/Whetherman_Problem/Murree_weather") { Dir.entries(".") }
-filenames_lahore = Dir.chdir("/home/sami/projects/Whetherman_Problem/lahore_weather") { Dir.entries(".") }
+filenames_Dubai = Dir.chdir("/home/sami/projects/Whetherman Problem/Dubai_weather") { Dir.entries(".") }
+filenames_Murree = Dir.chdir("/home/sami/projects/Whetherman Problem/Murree_weather") { Dir.entries(".") }
+filenames_lahore = Dir.chdir("/home/sami/projects/Whetherman Problem/lahore_weather") { Dir.entries(".") }
 
 filenames_Dubai.sort!
 filenames_Murree.sort!
@@ -86,7 +86,7 @@ countMurree=0
 cities.each do |city|
     month.each do |mon|
         
-        file_path = "/home/sami/projects/Whetherman_Problem/#{city}_weather/" 
+        file_path = "/home/sami/projects/Whetherman Problem/#{city}_weather/" 
         if city == "Dubai"
             # puts "Dubai"
             # countDubai+=1
